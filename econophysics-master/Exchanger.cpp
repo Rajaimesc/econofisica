@@ -53,11 +53,13 @@ void Exchanger::dragulescuYakovenkoStep(double data[]) {
 
 
 void Exchanger::chakrabortiChakrabartiStep(double *data) {
-    std::mt19937 gen(1);
-    std::normal_distribution<> dis {0,1};  
+  //std::mt19937 gen(1);
+  // std::normal_distribution<> dis {0,1};  
     int i = int((double) rand() / RAND_MAX * size);
     int j = int((double) rand() / RAND_MAX * size);
     double nu = (double) rand() / RAND_MAX;
+    std::mt19937 gen(1);
+    std::lognormal_distribution<> dis{sqrt(nu),sqrt(nu)};
     double eta= std::sqrt(nu)*dis(gen);
     double dmi =  (1.0 - nu* lambda)*(data[i]) + nu*lambda*(data[j]);
     double dmj = (1.0 - nu*lambda)*(data[j]) + nu*lambda*(data[i]);
